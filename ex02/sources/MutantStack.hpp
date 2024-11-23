@@ -3,7 +3,10 @@
 #include <iostream>
 #include <stack>
 
-template <typename T> class MutantStack : std::stack<T> {
+template <typename T> class MutantStack : public std::stack<T> {
+
+public: // add support to ::iterator assignment
+  typedef typename std::deque<T>::iterator iterator;
 
 public: // constructor
   MutantStack() : std::stack<T>() {
@@ -24,4 +27,8 @@ public: // copy assignment
 
 public: // deconstructor
   ~MutantStack() { std::cout << "Deconstructor called\n"; }
+
+public: // iterators
+  iterator begin() { return this->c.begin(); }
+  iterator end() { return this->c.end(); }
 };

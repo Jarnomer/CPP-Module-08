@@ -1,38 +1,39 @@
-#include <Span.hpp>
-
-#include <random>
-
-static Span generateSpan(size_t count, int min, int max) {
-  if (count == 0 || min > max) {
-    throw std::invalid_argument("Invalid count or range!");
-  } else {
-    Span span(count);
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(min, max);
-    for (size_t i = 0; i < count; ++i) {
-      span.addNumber(dist(gen));
-    }
-    return span;
-  }
-}
+#include <MutantStack.hpp>
 
 int main(void) {
-  size_t count = 10; // 100000
-  int min = -1000;   // int min = std::numeric_limits<int>::min();
-  int max = 1000;    // int max = std::numeric_limits<int>::max();
-  try {
-    Span span = generateSpan(count, min, max);
-    std::cout << "Shortest Span: " << span.shortestSpan() << "\n";
-    std::cout << "Longest Span: " << span.longestSpan() << "\n";
-  } catch (const std::invalid_argument &e) {
-    std::cout << "Invalid argument: " << e.what() << "\n";
-  } catch (const std::out_of_range &e) {
-    std::cout << "Out of range: " << e.what() << "\n";
-  } catch (const std::runtime_error &e) {
-    std::cout << "Runtime error: " << e.what() << "\n";
-  } catch (...) {
-    std::cout << "Unexpected erro occured!\n";
+  // std::stack<int> stack;
+  // stack.begin();
+
+  // MutantStack<int> mstack;
+  // mstack.push(1);
+  // mstack.push(2);
+  // mstack.push(3);
+
+  // std::cout << "Elements in MutantStack: ";
+  // for (auto it = mstack.begin(); it != mstack.end(); ++it) {
+  //   std::cout << *it << " ";
+  // }
+  // std::cout << std::endl;
+  // return 0;
+
+  MutantStack<int> mstack;
+  mstack.push(5);
+  mstack.push(17);
+  std::cout << mstack.top() << std::endl;
+  mstack.pop();
+  std::cout << mstack.size() << std::endl;
+  mstack.push(3);
+  mstack.push(5);
+  mstack.push(42);
+  mstack.push(0);
+  MutantStack<int>::iterator it = mstack.begin();
+  MutantStack<int>::iterator ite = mstack.end();
+  ++it;
+  --it;
+  while (it != ite) {
+    std::cout << *it << std::endl;
+    ++it;
   }
+  std::stack<int> s(mstack);
   return 0;
 }

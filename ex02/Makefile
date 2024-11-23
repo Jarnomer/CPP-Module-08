@@ -11,8 +11,7 @@ CFLAGS      := -Wall -Werror -Wextra
 CPPFLAGS    := -c -MMD -MP
 MAKEFLAGS   += --no-print-directory -j4
 
-SOURCES := main \
-		   Span
+SOURCES := main
 
 SOURCES := $(addsuffix .cpp, $(SOURCES))
 OBJECTS := $(addprefix $(BUILDDIR)/, $(SOURCES:.cpp=.o))
