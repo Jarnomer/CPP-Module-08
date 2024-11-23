@@ -47,6 +47,6 @@ int Span::longestSpan(void) {
     throw std::runtime_error("No enough elements!");
   } else {
     auto [min, max] = std::minmax_element(vec.begin(), vec.end());
-    return max - min;
+    return *max - *min;
   }
 }
