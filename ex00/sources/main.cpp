@@ -18,7 +18,7 @@ int main(void) {
     int foundValue3 = easyfind(vec, 42);
     std::cout << "Found in array: " << foundValue3 << std::endl;
 
-  } catch (const std::runtime_error &e) {
-    std::cerr << "Exception occured: " << e.what() << std::endl;
+  } catch (const std::exception &e) {
+    std::cerr << "Error: " << e.what() << std::endl;
   }
 }
